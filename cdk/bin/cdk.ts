@@ -5,6 +5,7 @@ import { MinecraftStack } from '../lib/minecraft-stack';
 import { DomainStack } from '../lib/domain-stack';
 import { constants } from '../lib/constants';
 import { resolveConfig } from '../lib/config';
+import { tags } from "../lib/tags";
 
 const app = new cdk.App();
 
@@ -26,6 +27,7 @@ const domainStack = new DomainStack(app, 'minecraft-domain-stack', {
     account: process.env.CDK_DEFAULT_ACCOUNT,
   },
   config,
+  tags: tags,
 });
 
 const minecraftStack = new MinecraftStack(app, 'minecraft-server-stack', {
@@ -35,6 +37,7 @@ const minecraftStack = new MinecraftStack(app, 'minecraft-server-stack', {
     account: process.env.CDK_DEFAULT_ACCOUNT,
   },
   config,
+  tags: tags,
 });
 
 minecraftStack.addDependency(domainStack);
